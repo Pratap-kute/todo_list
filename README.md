@@ -52,3 +52,11 @@ The following details how to deploy this application.
 ### Docker
 
 See detailed [cookiecutter-django Docker documentation](http://cookiecutter-django.readthedocs.io/en/latest/deployment-with-docker.html).
+
+## Creating a app
+
+1 - create the <name-of-the-app> app with python manage.py startapp
+2 - move <name-of-the-app> directory to <project_slug> directory
+3 - edit <project_slug>/<name-of-the-app>/apps.py and
+change name = "<name-of-the-app>" to name = "<project_slug>.<name-of-the-app>"
+4 - add "<project_slug>.<name-of-the-app>.apps.<NameOfTheAppConfigClass>", on your LOCAL_APPS on config/settings/base.py
