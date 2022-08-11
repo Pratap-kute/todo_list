@@ -16,6 +16,7 @@ urlpatterns = [
     path("users/", include("todo_list.users.urls", namespace="users")),
     path("accounts/", include("allauth.urls")),
     # Your stuff: custom urls includes go here
+    path("todo/", include("todo_list.todo_app.urls", namespace="todo")),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
 
