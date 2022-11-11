@@ -28,7 +28,6 @@ class ToDoItem(models.Model):
     todo_list = models.ForeignKey(TodoList, on_delete=models.CASCADE)
 
     def get_absolute_url(self):
-
         return reverse("item-update", args=[str(self.todo_list.id), str(self.id)])
 
     def __str__(self) -> str:

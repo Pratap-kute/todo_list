@@ -5,39 +5,39 @@
 
 {% block content %}
 
-<!--index.html-->
+  <!--index.html-->
 
-{% if object_list %}
+  {% if object_list %}
 
-<h3>All my lists</h3>
+    <h3>All my lists</h3>
 
-{% endif %}
+  {% endif %}
 
-<ul>
+  <ul>
 
     {% for todolist in object_list %}
 
-    <li>
+      <li>
 
         <div
 
-            role="button"
+          role="button"
 
-            onclick="location.href='{% url "todo_app:list" todolist.id %}'">
+          onclick="location.href='{% url "todo_app:list" todolist.id %}'">
 
-            {{ todolist.title }}
+          {{ todolist.title }}
 
         </div>
 
-    </li>
+      </li>
 
     {% empty %}
 
-    <h4>You have no lists!</h4>
+      <h4>You have no lists!</h4>
 
     {% endfor %}
 
-</ul>
+  </ul>
 
 
 {% endblock %}

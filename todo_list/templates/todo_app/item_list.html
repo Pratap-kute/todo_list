@@ -3,64 +3,64 @@
 
 {% block content %}
 
-<div>
+  <div>
 
     <div>
 
-        <div>
+      <div>
 
-            <h3>Edit list:</h3>
+        <h3>Edit list:</h3>
 
-            <h5>{{ todo_list.title | upper }}</h5>
+        <h5>{{ todo_list.title | upper }}</h5>
 
-        </div>
+      </div>
 
-        <ul>
+      <ul>
 
-            {% for todo in object_list %}
+        {% for todo in object_list %}
 
-            <li>
+          <li>
 
-                <div>
+            <div>
 
-                    <div
+              <div
 
-                        role="button"
+                role="button"
 
-                        onclick="location.href='#'">
+                onclick="location.href='#'">
 
-                        {{ todo.title }}
+                {{ todo.title }}
 
-                        (Due {{ todo.due_date | date:"l, F j" }})
+                (Due {{ todo.due_date | date:"l, F j" }})
 
-                    </div>
+              </div>
 
-                </div>
+            </div>
 
-            </li>
+          </li>
 
-            {% empty %}
+        {% empty %}
 
-            <p>There are no to-do items in this list.</p>
+          <p>There are no to-do items in this list.</p>
 
-            {% endfor %}
+        {% endfor %}
 
-        </ul>
+      </ul>
 
-        <p>
+      <p>
 
-            <input
+        <input
 
-                value="Add a new item"
+          value="Add a new item"
 
-                type="button"
+          type="button"
 
-                onclick="location.href='#'" />
+          onclick="location.href='#'"/>
 
-        </p>
+      </p>
 
     </div>
 
-</div>
+  </div>
 
 {% endblock %}
