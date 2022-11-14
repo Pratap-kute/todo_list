@@ -38,6 +38,9 @@
     {% endfor %}
 
   </ul>
-
+  <input
+    value="Add a new list"
+    type="button"
+    onclick="location.href='{% url "todo_app:add_list" %}'"/>
 
 {% endblock %}
