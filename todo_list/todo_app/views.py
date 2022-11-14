@@ -1,5 +1,5 @@
-from django.urls import reverse
-from django.views.generic import CreateView, ListView, UpdateView
+from django.urls import reverse, reverse_lazy
+from django.views.generic import CreateView, DeleteView, ListView, UpdateView
 
 from todo_list.todo_app.models import ToDoItem, TodoList
 
@@ -55,6 +55,16 @@ class CreateTodoList(CreateView):
 createtodolist_view = CreateTodoList.as_view()
 
 
+class ListDelete(DeleteView):
+    model = TodoList
+    # You have to use reverse_lazy() instead of reverse(),
+    # as the urls are not loaded when the file is imported.
+    success_url = reverse_lazy("todo_app:todolists_index")
+
+
+listdelte_view = ListDelete.as_view()
+
+
 class CreateToDoItem(CreateView):
     model = ToDoItem
     fields = [
@@ -79,7 +89,7 @@ class CreateToDoItem(CreateView):
         return context
 
     def get_success_url(self):
-        return reverse("list", args=[self.object.todo_list.id])
+        return reverse("todo_app:list", args=[self.object.todo_list.id])
 
 
 createtodoitem_view = CreateToDoItem.as_view()
@@ -88,7 +98,8 @@ createtodoitem_view = CreateToDoItem.as_view()
 class UpdateToDoItem(UpdateView):
     model = ToDoItem
     fields = [
-        "todo_list" "title",
+        "todo_list",
+        "title",
         "description",
         "due_date",
     ]
@@ -103,3 +114,21 @@ class UpdateToDoItem(UpdateView):
 
     def get_success_url(self):
         return reverse("list", args=[self.object.todo_list.id])
+
+
+updatetodoitem_view = UpdateToDoItem.as_view()
+
+
+class ItemDelete(DeleteView):
+    model = ToDoItem
+
+    def get_success_url(self):
+        return reverse_lazy("todo:list", args=[self.kwargs["list_id"]])
+
+    def get_context_data(self, **kwarg):
+        context = super().get_context_data(**kwarg)
+        context["todo_list"] = self.object.todo_list
+        return context
+
+
+itemdelete_view = ItemDelete.as_view()
