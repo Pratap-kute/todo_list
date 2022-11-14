@@ -14,7 +14,7 @@ class TodoList(models.Model):
     title = models.CharField(max_length=100, unique=True)
 
     def get_absolute_url(self):
-        return reverse("list", args=[self.id])
+        return reverse("todo_app:list", args=[self.id])
 
     def __str__(self) -> str:
         return self.title
@@ -28,7 +28,9 @@ class ToDoItem(models.Model):
     todo_list = models.ForeignKey(TodoList, on_delete=models.CASCADE)
 
     def get_absolute_url(self):
-        return reverse("item-update", args=[str(self.todo_list.id), str(self.id)])
+        return reverse(
+            "todo_app:item-update", args=[str(self.todo_list.id), str(self.id)]
+        )
 
     def __str__(self) -> str:
         return f"{self.title}: due ({self.due_date})"
